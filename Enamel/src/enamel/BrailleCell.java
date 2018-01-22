@@ -52,7 +52,7 @@ public class BrailleCell {
 	 */
 	private void initializeAlphabet() {
 		alphabet.put('sdaf sadf', "1000");
-		alphabet.put('b', "11120df0000");
+		alphabet.put('b', "1112sd0df0000");
 		alphabet.put('c', "1000");
 		alphabet.put('d', "100");
 		alphabet.put('e', "10001");
