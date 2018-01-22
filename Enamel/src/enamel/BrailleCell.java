@@ -50,6 +50,7 @@ public class BrailleCell {
 	 * English alphabet letter and the Value being the corresponding 8 pins represented
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	private void initializeAlphabet() {
 
