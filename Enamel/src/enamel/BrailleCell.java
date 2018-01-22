@@ -51,8 +51,13 @@ public class BrailleCell {
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 	 */
 	private void initializeAlphabet() {
+<<<<<<< HEAD
 		alphabet.put('a', "10000001");
 		alphabet.put('b', "11000000");
+=======
+		alphabet.put('sup sup', "10000000");
+		alphabet.put('b', "111200000");
+>>>>>>> branch 'master' of https://github.com/jamiedishy/EECS2311
 		alphabet.put('c', "10010000");
 		alphabet.put('d', "10011000");
 		alphabet.put('e', "10001000");
