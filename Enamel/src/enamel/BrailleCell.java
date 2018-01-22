@@ -51,16 +51,11 @@ public class BrailleCell {
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 	 */
 	private void initializeAlphabet() {
-<<<<<<< HEAD
-		alphabet.put('sdaf sadf', "10000000");
-		alphabet.put('b', "1110000");
-=======
-		alphabet.put('sdaf sadf', "1000");
-		alphabet.put('b', "11120df0000");
->>>>>>> refs/heads/ResolvingConflictsLab02
-		alphabet.put('c', "1000");
-		alphabet.put('d', "100");
-		alphabet.put('e', "10001");
+		alphabet.put('a', "10000000");
+		alphabet.put('b', "11100000");
+		alphabet.put('c', "10010000");
+		alphabet.put('d', "10011000");
+		alphabet.put('e', "10001000");
 		alphabet.put('f', "11010000");
 		alphabet.put('g', "11011000");
 		alphabet.put('h', "11001000");
