@@ -50,13 +50,8 @@ public class BrailleCell {
 	 * English alphabet letter and the Value being the corresponding 8 pins represented
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 	 */
-<<<<<<< HEAD
 	private void initializeAlphabet() {
-		alphabet.put('a', "10000000");
-=======
-	private void initializeAlphabet() {
-		alphabet.put('a', "10000000");
->>>>>>> refs/heads/TestBranch
+		alphabet.put('a', "11100000");
 		alphabet.put('b', "11000000");
 		alphabet.put('c', "10010000");
 		alphabet.put('d', "10011000");
