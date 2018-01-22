@@ -51,8 +51,8 @@ public class BrailleCell {
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 	 */
 	private void initializeAlphabet() {
-		alphabet.put('sdaf sadf', "1000");
-		alphabet.put('b', "1112sd0df0000");
+		alphabet.put('s', "10");
+		alphabet.put('b', "111df0000");
 		alphabet.put('c', "1000");
 		alphabet.put('d', "100");
 		alphabet.put('e', "10001");
