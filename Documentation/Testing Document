@@ -1,1 +1,12 @@
+Testing Documents
 
+Test Cases:
+
+Tests that check if the corresponding buttons run the proper methods.
+
+Tests that script different buttons running to see if there is any errors that overlap variables
+or rewrite variables.
+
+These test cases come from just basic quality control checks that have been learned through our courses and desired outcome. 
+
+These test cases are relevant to maintaining a quality check in our application is slowly going to grow as continue in our application development.
