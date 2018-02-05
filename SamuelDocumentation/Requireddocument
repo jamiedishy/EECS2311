@@ -1,1 +1,8 @@
-This is a folder for the 3 documents
+Required Documents
+
+The system created will allow the client to create scenario that can be edited, created and deleted for braille users.
+
+The use cases for the system are to allow teachers to teach their material in braille to their user. 
+
+The acceptance test cases for this application is:
+The application must create an interactive braille interface for the teacher’s user to use
