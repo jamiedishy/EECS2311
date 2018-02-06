@@ -1,8 +1,8 @@
-package enamel;
+ package enamel;
 
 import java.util.HashMap;
 import java.util.*;
-//pushtest
+
 /**
  * This class implements a Braille Cell with 8 pins. The class contains methods
  * for displaying letters on the cell as well as raising and/or lowering
@@ -51,10 +51,11 @@ public class BrailleCell {
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 */
 	private void initializeAlphabet() {
 
-		alphabet.put('a', "00000000");
+		alphabet.put('a', "10000000");
 		alphabet.put('b', "11000000");
 		alphabet.put('c', "10010000");
 		alphabet.put('d', "10011000");
