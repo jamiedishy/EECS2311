@@ -10,7 +10,7 @@ import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
 public class ScenarioParser {
-	//pushtest
+
 	private Voice voice;
 	private VoiceManager vm;
 	private Scanner fileScanner;
