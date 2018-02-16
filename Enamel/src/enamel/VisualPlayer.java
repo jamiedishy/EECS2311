@@ -122,15 +122,9 @@ public class VisualPlayer extends Player {
 				frame.setVisible(true);
 			}
 		});
-		
 
 }
-	
-	
-	
-	
 
-	
 	/**
 	 * This method is meant for the ScenarioParser class to use to update the
 	 * parameters based on the input. To set the number of cells and buttons on
@@ -169,8 +163,6 @@ public class VisualPlayer extends Player {
 		}
 		
 	}
-	
-	
 
 	/**
 	 * Returns a reference to the button at the index passed as argument. The
