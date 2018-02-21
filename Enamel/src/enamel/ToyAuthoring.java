@@ -1,6 +1,9 @@
 package enamel;
 
 import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileSystemView;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +17,25 @@ public class ToyAuthoring extends Application {
 	Stage window;
 	Scene startMenu;
 
+
     public static void main(String[] args) { 	
+
+    	//Create a file chooser
+  	  JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+  	    
+  	    //In response to a button click:
+  	  int returnVal = fc.showOpenDialog(null);
+  	  
+  	  if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = fc.getSelectedFile();
+			System.out.println(selectedFile.getAbsolutePath());
+		}  
+    	
+  	  	ScenarioParser s = new ScenarioParser(true);
+    	    s.setScenarioFile("FactoryScenarios/Scenario_" + 2 + ".txt");
+    	    
+    	  
+
     	//JFileChooser fc = new JFileChooser();
     	//int returnVal = fc.showOpenDialog(fc);
     	//File file = fc.getSelectedFile();
@@ -23,6 +44,7 @@ public class ToyAuthoring extends Application {
     	//s.setScenarioFile(file.getAbsolutePath());
     	
     	launch(args);
+
     }
     
     @Override
