@@ -245,9 +245,6 @@ public class ScenarioEditor {
         GridPane.setConstraints(reset, 5, 5, 1, 1);
         GridPane.setConstraints(cancel, 6, 5, 1, 1);
         question.setPromptText("Type question here");
-/*        question.setOnMousePressed(e -> {
-            question.clear();
-           });*/
         
         for (int i = 0; i < BUTTON_COUNT.get(); i++){
         	Integer count = i + 1;
