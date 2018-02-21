@@ -52,6 +52,7 @@ public class ScenarioEditor {
 		Menu menuAudio = new Menu("Audio");
 		MenuItem miUpload = new MenuItem("Upload...");
 		MenuItem miRecord = new MenuItem("Record...");
+		miRecord.setOnAction(e -> enamel.AudioTesting.audio());
 		menuAudio.getItems().addAll(miUpload, miRecord);
 		Menu menuHelp = new Menu("Help");
 		menuBar.getMenus().addAll(menuFile, menuAudio, menuHelp);
