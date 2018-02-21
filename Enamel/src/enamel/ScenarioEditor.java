@@ -5,6 +5,7 @@ import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import java.io.File;
+import java.util.ArrayList;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -99,7 +100,7 @@ public class ScenarioEditor {
 		miNew.setOnAction(e -> newScenario());
 		miOpen.setOnAction(e -> openScenario());
 		miExit.setOnAction(e -> window.close());
-		
+		miRecord.setOnAction(e -> recordAudio());
 		
 		// Paint the whole window and show
 		Scene editor = new Scene(mainLayout);
@@ -107,7 +108,11 @@ public class ScenarioEditor {
 		window.show();
 	}
 	
-    private void openScenario() {
+    private void recordAudio() {
+		RecordAudioDialog.display();
+	}
+
+	private void openScenario() {
 		File chosenFile = fc("Play a scenario file...", "*.txt");
 		System.out.println("FILE: " + chosenFile.toString());
 	}
@@ -160,7 +165,7 @@ public class ScenarioEditor {
         storyPage.setVgap(10);
         storyPage.setHgap(12);
         storyPage.setAlignment(Pos.CENTER);
-        storyPage.setGridLinesVisible(true);
+        //storyPage.setGridLinesVisible(true);
         
         TextArea text = new TextArea();
         Label audioLabel = new Label("Audio: ");
@@ -191,7 +196,13 @@ public class ScenarioEditor {
         GridPane.setConstraints(add, 3, 6, 1, 2);
         GridPane.setConstraints(reset, 4, 6, 1, 2);
         GridPane.setConstraints(cancel, 5, 6, 1, 2);
-
+        add.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        });
 		reset.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
 				text.clear();
@@ -212,7 +223,54 @@ public class ScenarioEditor {
     }
     
     private void createQuiz() {
-    	return;
+    	GridPane quizPage = new GridPane();
+		quizPage.setPadding(new Insets(5, 5, 5, 5));
+        quizPage.setVgap(10);
+        quizPage.setHgap(12);
+        quizPage.setAlignment(Pos.CENTER);
+        //quizPage.setGridLinesVisible(true);
+        
+        Label questLabel = new Label("Question: ");
+        TextField question = new TextField();
+        ArrayList<ComboBox> audio = new ArrayList<ComboBox>();
+        ArrayList<TextField> response = new ArrayList<TextField>();
+        ArrayList<Label> responseLabel = new ArrayList<Label>();
+        ArrayList<Label> numChoice = new ArrayList<Label>();
+        Button add = new Button("Add");
+        Button reset = new Button("Reset");
+        Button cancel = new Button("Cancel");
+        GridPane.setConstraints(questLabel, 0, 0, 1, 1);
+        GridPane.setConstraints(question, 1, 0, 7, 1);
+        GridPane.setConstraints(add, 4, 5, 1, 1);
+        GridPane.setConstraints(reset, 5, 5, 1, 1);
+        GridPane.setConstraints(cancel, 6, 5, 1, 1);
+        question.setPromptText("Type question here");
+/*        question.setOnMousePressed(e -> {
+            question.clear();
+           });*/
+        
+        for (int i = 0; i < BUTTON_COUNT.get(); i++){
+        	Integer count = i + 1;
+        	String countLabel = count.toString();
+        	audio.add(new ComboBox());
+        	response.add(new TextField());
+        	responseLabel.add(new Label("Response :"));
+        	numChoice.add(new Label(countLabel + ":"));
+        	GridPane.setConstraints(audio.get(i), 1, i + 1, 1, 1);
+        	GridPane.setConstraints(response.get(i), 3, i + 1, 5, 1);
+        	GridPane.setConstraints(responseLabel.get(i), 2, i + 1, 1, 1);
+        	GridPane.setConstraints(numChoice.get(i), 0, i + 1, 1, 1);
+        	quizPage.getChildren().addAll(
+    				audio.get(i), response.get(i), 
+    				responseLabel.get(i), numChoice.get(i)
+    			);
+        }
+        quizPage.getChildren().addAll(
+			questLabel, question,
+			add, cancel, reset
+			);
+		
+        mainLayout.setCenter(quizPage);
     }
     
 }
