@@ -53,6 +53,7 @@ public class RecordAudioDialog{
 		Button save = new Button("Save");
 		Label msg = new Label("Start Recording!");
 		filename.setPromptText("Sample.wav");
+		filename.setAlignment(Pos.CENTER);
 		GridPane.setConstraints(start, 0, 0, 3, 1);
 		GridPane.setHalignment(start, HPos.CENTER);
 		GridPane.setConstraints(stop, 0, 1, 3, 1);
@@ -80,7 +81,7 @@ public class RecordAudioDialog{
 		                try {
 							start() ;
 						} catch (LineUnavailableException e) {
-							msg.setText("Recording is disabled");
+							msg.setText("WAV recording not supported");
 						}          
 		            }
 		        });
@@ -95,7 +96,7 @@ public class RecordAudioDialog{
 				try {
 					stop();
 				} catch (IOException e) {
-					msg.setText("Something went wrong");
+					msg.setText("Record got corrupted");
 				}
 				msg.setText("Recording is finished!");
 			}
