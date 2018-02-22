@@ -67,7 +67,7 @@ public class NewScenarioDialog {
 				buttonsLayout
 				);
 		
-		fileText.setText("asd");
+		fileText.setText("Please insert file Name");
 		createButton.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
 				header = new String("");
