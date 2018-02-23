@@ -1,0 +1,30 @@
+Cell 2
+Button 3
+/~sound:freedom_x.wav
+It's time to kick some ass!
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+Which side are you on? Press 1 for Terran. Press 2 for Zerg. Press 3 for Terran.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~skip-button:2 SKIP3
+/~user-input
+/~SKIP1
+/~sound:correct.wav
+Okay, you're good!
+/~skip:JUMP
+/~SKIP2
+/~sound:wrong.wav
+You filthy lowlife. Die motherfucker!
+/~skip:JUMP
+/~SKIP3
+/~sound:wrong.wav
+It's a fight to the death!
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons

@@ -52,6 +52,7 @@ public class RecordAudioDialog{
 		Button stop = new Button("Stop");
 		Button save = new Button("Save");
 		Label msg = new Label("Start Recording!");
+		stop.setDisable(true);
 		filename.setPromptText("Sample.wav");
 		filename.setAlignment(Pos.CENTER);
 		GridPane.setConstraints(start, 0, 0, 3, 1);
@@ -65,13 +66,11 @@ public class RecordAudioDialog{
 		GridPane.setHalignment(msg, HPos.CENTER);
 		
 		layout.getChildren().addAll(
-				start,
-				stop,
-				filename,
-				save,
-				msg
-			);
+				start, stop, filename, save, msg
+		);
 
+		save.disableProperty().bind(filename.textProperty().isEmpty());
+		
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
 		        
@@ -79,25 +78,31 @@ public class RecordAudioDialog{
 		            @Override
 		            public void run() {
 		                try {
-							start() ;
+							start();
 						} catch (LineUnavailableException e) {
 							msg.setText("WAV recording not supported");
-						}          
+						}
 		            }
 		        });
 		        
 		        recordThread.start();
+		        start.setDisable(true);
+		        stop.setDisable(false);
 				msg.setText("Recording has started!");
 			}
 		});
 		
 		stop.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
+				
 				try {
 					stop();
 				} catch (IOException e) {
 					msg.setText("Record got corrupted");
 				}
+				
+				stop.setDisable(true);
+				start.setDisable(false);
 				msg.setText("Recording is finished!");
 			}
 		});		
@@ -114,7 +119,9 @@ public class RecordAudioDialog{
 				} catch (IOException e) {
 					msg.setText("Something went wrong");
 				}
-				msg.setText(filename.getText() + ".wav is saved!");
+				
+				msg.setText(filename.getText() + ".wav is saved!");				
+				filename.setText(null);
 			}
 		});
 		

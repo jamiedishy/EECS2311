@@ -9,10 +9,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.sound.sampled.LineUnavailableException;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -28,14 +29,19 @@ public class ScenarioEditor {
 
 	Stage window;
 	BorderPane mainLayout;
-	IntegerProperty CELL_COUNT = new SimpleIntegerProperty(0);
-	IntegerProperty BUTTON_COUNT = new SimpleIntegerProperty(0);
-	StringProperty FILENAME = new SimpleStringProperty();
-	ListView<String> storyList = new ListView<String>();
+	IntegerProperty CELL_COUNT;
+	IntegerProperty BUTTON_COUNT;
+	StringProperty FILENAME;
+	StringProperty STATUS_MSG;
+	ListView<String> storyList;
 	
 	protected void display() {
-		FILENAME.set("");
-		
+		//FILENAME.set("");
+    	CELL_COUNT = new SimpleIntegerProperty(0);
+    	BUTTON_COUNT = new SimpleIntegerProperty(0);
+    	FILENAME = new SimpleStringProperty(null);
+    	STATUS_MSG = new SimpleStringProperty(null);
+    	
 		window = new Stage();
 		//window.initModality(Modality.APPLICATION_MODAL);
 		window.setTitle("Scenario Editor");
@@ -58,17 +64,12 @@ public class ScenarioEditor {
 		MenuItem miClose = new MenuItem("Close file");
 		MenuItem miExit = new MenuItem("Exit");
 		menuFile.getItems().addAll(
-				miNew, 
-				miOpen, 
-				new SeparatorMenuItem(), 
-				miSave, 
-				miSaveAs,
-				new SeparatorMenuItem(),
-				miPlay,
-				new SeparatorMenuItem(),
-				miClose,
-				new SeparatorMenuItem(),
-				miExit);
+			miNew, miOpen, new SeparatorMenuItem(), 
+			miSave, miSaveAs, new SeparatorMenuItem(),
+			miPlay, new SeparatorMenuItem(),
+			miClose, new SeparatorMenuItem(),
+			miExit
+		);
 		Menu menuAudio = new Menu("Audio");
 		MenuItem miUpload = new MenuItem("Upload...");
 		MenuItem miRecord = new MenuItem("Record...");
@@ -78,32 +79,47 @@ public class ScenarioEditor {
 		mainLayout.setTop(menuBar);
 		miOpen.setDisable(true);
 		
-		// Side list
-		mainLayout.setLeft(storyList);
-		
-		// Main page
-		Label filler = new Label("Welcome Screen");
-		mainLayout.setCenter(filler);
+		displayWelcomePage();
 
 		// Status bar
-		HBox statusBar = new HBox(16);
-		statusBar.setPadding(new Insets(5, 5, 5, 5));
+		AnchorPane statusBar = new AnchorPane();
+		HBox headerInfo = new HBox(16);
 		Label fileName = new Label();
-		fileName.setText(FILENAME.get());
 		Label bcellCount = new Label();
-
 		Label buttonCount = new Label();
+		Label statusMsg = new Label();
+		
+		statusBar.setPadding(new Insets(0, 10, 0, 5));
+		headerInfo.setPadding(new Insets(5, 5, 5, 5));
+		fileName.setText(FILENAME.get());
+		statusMsg.setText(STATUS_MSG.get());
 
-		statusBar.getChildren().addAll(
-				new Label("Braille Cell(s): "), bcellCount, 
-				new Label("Button(s): "), buttonCount, 
+		AnchorPane.setLeftAnchor(headerInfo, 0.0);
+		AnchorPane.setTopAnchor(headerInfo, 0.0);
+		AnchorPane.setBottomAnchor(headerInfo, 0.0);
+		AnchorPane.setRightAnchor(statusMsg, 0.0);
+		AnchorPane.setTopAnchor(statusMsg, 0.0);
+		AnchorPane.setBottomAnchor(statusMsg, 0.0);
+		
+		headerInfo.getChildren().addAll(
+				new Label("Braille Cells:"), bcellCount,
+				new Separator(Orientation.VERTICAL),
+				new Label("Buttons:"), buttonCount,
+				new Separator(Orientation.VERTICAL),
 				fileName
 			);
+		
+		statusBar.getChildren().addAll(
+				headerInfo,
+				statusMsg
+			);
+		
 		mainLayout.setBottom(statusBar);
 		
-		fileName.textProperty().bind(FILENAME);
 		bcellCount.textProperty().bind(CELL_COUNT.asString());
 		buttonCount.textProperty().bind(BUTTON_COUNT.asString());
+		fileName.textProperty().bind(FILENAME);
+		statusMsg.textProperty().bind(STATUS_MSG);
 		
 		// Event Handlers
 		miPlay.setOnAction(e -> playScenario());
@@ -111,7 +127,9 @@ public class ScenarioEditor {
 		miOpen.setOnAction(e -> openScenario());
 		miSave.setOnAction(e -> saveScenario());
 		miSaveAs.setOnAction(e -> saveAsScenario());
+		miClose.setOnAction(e -> displayWelcomePage());
 		miExit.setOnAction(e -> window.close());
+		miUpload.setOnAction(e -> uploadAudio());
 		miRecord.setOnAction(e -> recordAudio());
 		
 		// Paint the whole window and show
@@ -120,40 +138,83 @@ public class ScenarioEditor {
 		window.show();
 	}
 	
-    private void recordAudio() {
+    private void displayWelcomePage() { 
+    	CELL_COUNT.setValue(0);
+    	BUTTON_COUNT.set(0);
+    	FILENAME.setValue(null);
+    	STATUS_MSG.set(null);
+    	storyList = new ListView<String>();
+    	
+    	// Side list
+		mainLayout.setLeft(storyList);
+		
+		// Main page
+		Label filler = new Label("Welcome Screen");
+		mainLayout.setCenter(filler);		
+	}
+
+	private void uploadAudio() {
+		File src = ofc("Upload an audio file...", "Audio file", "*.wav");
+		if (src != null) {
+			File target = new File(System.getProperty("user.dir") + File.separator + 
+									"FactoryScenarios" + File.separator + 
+									"AudioFiles" + File.separator +
+									src.getName());
+			
+			try {
+				Files.copy(src.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			STATUS_MSG.set(target.getName() + " uploaded successfully!");
+		}
+	}
+
+	private void recordAudio() {
 		RecordAudioDialog.display();
 	}
 
 	private void openScenario() {
-		File chosenFile = ofc("Play a scenario file...", "*.txt");
+		File chosenFile = ofc("Play a scenario file...", "Scenario file", "*.txt");
 		System.out.println("FILE: " + chosenFile.toString());
 	}
 
 	private void playScenario() {
-    	File chosenFile = ofc("Open a scenario file...", "*.txt");
+    	File chosenFile = ofc("Open a scenario file...", "Scenario file", "*.txt");
     	if (chosenFile != null) {
-	    	ScenarioParser s = new ScenarioParser(true);
-	    	s.setScenarioFile(chosenFile.getAbsolutePath());
+    		Thread playThread = new Thread(new Runnable() {
+	            @Override
+	            public void run() {
+	    	    	ScenarioParser s = new ScenarioParser(true);
+	    	    	s.setScenarioFile(chosenFile.getAbsolutePath());
+	            }
+	        });
+	        
+	        playThread.start();
     	}
     }
     
-    private File ofc(String title, String ext) {
+    private File ofc(String title, String type, String ext) {
     	FileChooser fc = new FileChooser();
     	File defaultDir = new File(System.getProperty("user.dir") + File.separator + "FactoryScenarios");
     	fc.setTitle(title);
     	fc.setInitialDirectory(defaultDir);
     	fc.getExtensionFilters().addAll(
-    		new FileChooser.ExtensionFilter("Scenario file", ext)
+    		new FileChooser.ExtensionFilter(type, ext)
     	);
     	return fc.showOpenDialog(window);   	
     }
     
     private void saveScenario() {
-    	sfc(FILENAME.get());
+    	if ( CELL_COUNT.get() != 0 || BUTTON_COUNT.get() != 0 )
+    		sfc(FILENAME.get());
     }
     
     private void saveAsScenario() {
-    	sfc(null);
+    	if ( CELL_COUNT.get() != 0 || BUTTON_COUNT.get() != 0 )
+    		sfc(null);
     }
     
     private void sfc(String filename) {
@@ -174,6 +235,9 @@ public class ScenarioEditor {
     		chosenFile = new File(defaultDir.getAbsolutePath() + File.separator + filename);
     	}
 
+    	if (chosenFile == null)
+    		return;
+    	
 		try {
 			FileWriter fw = new FileWriter(chosenFile);
 	        BufferedWriter bw = new BufferedWriter(fw);
@@ -217,14 +281,21 @@ public class ScenarioEditor {
     	startPrompt.setText("What would you like to create?");
     	Button createStory = new Button("Story");
     	Button createQuiz = new Button("Quiz");
-    	startPage.getChildren().addAll(startPrompt, createStory, createQuiz);
+    	Button createBraille = new Button("Braille");
+    	startPage.getChildren().addAll(startPrompt, createStory, createQuiz, createBraille);
     	
     	createStory.setOnAction(e -> createStory());
     	createQuiz.setOnAction(e -> createQuiz());
+    	createBraille.setOnAction(e -> createBraille());
     	mainLayout.setCenter(startPage);   	
     }
     
-    private void createStory() {
+    private Object createBraille() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void createStory() {
     	GridPane storyPage = new GridPane();
 		storyPage.setPadding(new Insets(5, 5, 5, 5));
         storyPage.setVgap(10);
@@ -249,7 +320,7 @@ public class ScenarioEditor {
         						  "FactoryScenarios" + File.separator + 
         						  "AudioFiles");
         
-        if (audioFile.isDirectory()){
+        if (audioFile.isDirectory()) {
         	for (String s : audioFile.list()) {
         		if (FilenameUtils.getExtension(s).toLowerCase().equals("wav"))
         			audio.getItems().addAll(s);
