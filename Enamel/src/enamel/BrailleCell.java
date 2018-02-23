@@ -26,7 +26,7 @@ import java.util.*;
  * method of class <code> Simulator</code> to obtain references to individual
  * <code> BrailleCell</code> objects.
  * 
- * @author Team 4: Yassin Mohamed, Qassim Allauddin, Derek Li, Artem Solovey.
+ * @author Team 14: Paul Sison, Samuel On, Jonas Laya, Jamie Dishy
  * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
  *
  */
@@ -131,7 +131,7 @@ public class BrailleCell {
 		for (int i = 0; i <= 7; i++) {
 			if (pins.charAt(i) != '0' && pins.charAt(i) != '1') {
 				throw new IllegalArgumentException(
-						"Invalid string passed, non-binary character detected at index:" + i + ".");
+						"Invalid string passed, non-binary character detected.");
 			}
 		}
 		this.clear();
@@ -154,7 +154,7 @@ public class BrailleCell {
 		if (pin < 0 || pin > 7) {
 			throw new IllegalArgumentException("Invalid index");
 		}
-		listOfPins[pin - 1] = true;
+		listOfPins[pin] = true;
 	}
 	
 	/**
