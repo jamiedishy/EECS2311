@@ -21,6 +21,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
@@ -164,11 +166,10 @@ public class ScenarioEditor {
 			try {
 				Files.copy(src.toPath(), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				STATUS_MSG.set("Upload failed");
 			}
 			
-			STATUS_MSG.set(target.getName() + " uploaded successfully!");
+			STATUS_MSG.set(target.getName() + " uploaded successfully");
 		}
 	}
 
@@ -254,10 +255,10 @@ public class ScenarioEditor {
 	    	
 	    	bw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			STATUS_MSG.set("Save failed");
 		}
 
+		STATUS_MSG.set(chosenFile.getName() + " saved successfully");
     }    
     
     private void newScenario() {
@@ -290,9 +291,95 @@ public class ScenarioEditor {
     	mainLayout.setCenter(startPage);   	
     }
     
-    private Object createBraille() {
-		// TODO Auto-generated method stub
-		return null;
+    private void createBraille() {
+    	int LIMIT = 1;
+		GridPane braillePage = new GridPane();
+		braillePage.setPadding(new Insets(10, 10, 10, 10));
+        braillePage.setVgap(10);
+        braillePage.setHgap(10);
+        braillePage.setAlignment(Pos.CENTER);
+        //braillePage.setGridLinesVisible(true);
+        Button add = new Button("Add");
+        Button reset = new Button("Reset");
+        Button back = new Button("Back");
+                
+        GridPane bcLayout = new GridPane();
+        bcLayout.setAlignment(Pos.CENTER);
+		bcLayout.setPadding(new Insets(6, 0, 6, 6));
+        bcLayout.setHgap(3);
+        bcLayout.setVgap(6);
+        Label cellTag = new Label("1");
+        cellTag.setAlignment(Pos.CENTER);
+        TextField charInput = new TextField();
+        charInput.setPromptText("Enter character here");
+        charInput.setAlignment(Pos.CENTER);
+        RadioButton[] brailleRB = new RadioButton[8];
+        for (int i = 0; i < 8; i++) {
+        	brailleRB[i] = new RadioButton();
+        	bcLayout.getChildren().addAll(brailleRB[i]);
+        }
+
+        GridPane.setHalignment(cellTag, HPos.CENTER);
+        GridPane.setHalignment(bcLayout, HPos.CENTER);
+        GridPane.setHalignment(charInput, HPos.CENTER);
+        GridPane.setHalignment(add, HPos.CENTER);
+        GridPane.setHalignment(reset, HPos.CENTER);
+        GridPane.setHalignment(back, HPos.CENTER);        
+        
+        GridPane.setConstraints(cellTag, 1, 0);
+        GridPane.setConstraints(bcLayout, 1, 1);
+        GridPane.setConstraints(charInput, 0, 2, 3, 1);
+        GridPane.setConstraints(add, 0, 3);
+        GridPane.setConstraints(reset, 1, 3);        
+        GridPane.setConstraints(back, 2, 3);       
+        
+        GridPane.setConstraints(brailleRB[0], 0, 0);
+        GridPane.setConstraints(brailleRB[1], 0, 1);
+        GridPane.setConstraints(brailleRB[2], 0, 2);
+        GridPane.setConstraints(brailleRB[3], 1, 0);
+        GridPane.setConstraints(brailleRB[4], 1, 1);
+        GridPane.setConstraints(brailleRB[5], 1, 2);
+        GridPane.setConstraints(brailleRB[6], 0, 3);
+        GridPane.setConstraints(brailleRB[7], 1, 3);
+
+        String cssLayout =	"-fx-border-color: black;\n" +
+							"-fx-border-width: 2;\n";
+
+		bcLayout.setStyle(cssLayout);
+		
+        braillePage.getChildren().addAll(cellTag, bcLayout, charInput, add, reset, back);
+        
+        // https://stackoverflow.com/questions/22714268/how-to-limit-the-amount-of-characters-a-javafx-textfield
+        charInput.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable,
+                    Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    // Check if the new character is greater than LIMIT
+                    if (charInput.getText().length() >= LIMIT) {
+                        charInput.setText(charInput.getText().substring(0, LIMIT));
+                    }
+                }
+            }
+        });
+        
+        // http://fxexperience.com/2012/02/restricting-input-on-a-textfield/
+        charInput.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable,
+                    String oldValue, String newValue) {             
+                if (!charInput.getText().toLowerCase().matches("[a-z]"))
+                	charInput.setText("");
+            }
+        });
+        
+        mainLayout.setCenter(braillePage);
+        
+/*        int i;
+        for (i = 0; i < CELL_COUNT.get(); i++) {
+        	
+        	
+        }*/
 	}
 
 	private void createStory() {

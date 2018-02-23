@@ -44,14 +44,11 @@ public class BrailleCell {
 	public BrailleCell() {
 		this.initializeAlphabet();
 	}
-	//test comment
+
 	/**
 	 * Initializes the HashMap of our Braille alphabet, with the Key being the char
 	 * English alphabet letter and the Value being the corresponding 8 pins represented
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	 */
 	private void initializeAlphabet() {
 
