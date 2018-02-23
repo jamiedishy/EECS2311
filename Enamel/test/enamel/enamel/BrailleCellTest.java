@@ -74,9 +74,17 @@ class BrailleCellTest {
 	@Test
 	void testLowerOnePin() {
 		BrailleCell pin = new BrailleCell();
+		try {
+			int a = 9;
+			a = pin.getNumberOfPins();
+		}
+		catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Invalid index");
+		}
 		pin.lowerOnePin(5);
 		assertEquals(false, pin.getPinState(5));
 	}
+
 
 	@Test
 	void testClear() {
