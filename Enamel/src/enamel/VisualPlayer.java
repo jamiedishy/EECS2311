@@ -41,7 +41,7 @@ import javax.swing.SwingUtilities;
  * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
  */
 /**
- * @author Yassin
+ * @author Team 14: Paul Sison, Samuel On, Jonas Laya, Jamie Dishy
  *
  */
 public class VisualPlayer extends Player {
