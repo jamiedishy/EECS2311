@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 * class also contains several methods that allow for the manipulation of the
 * Player, some implemented and others remain abstract for future implementation.
 * 
+* @author Team 14: Jamie Dishy, Paul Sison, Samuel On, Jonas Laya
 * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
 *
 */
