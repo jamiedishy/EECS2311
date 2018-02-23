@@ -8,7 +8,7 @@ Press 1 to continue.
 /~JUMP
 /~pause:1
 /~reset-buttons
-Which side are you on? Press 1 for Terran. Press 2 for Zerg. Press 3 for Terran.
+Which side are you on? Press 1 for Terran. Press 2 for Zerg. Press 3 for Protoss.
 /~skip-button:0 SKIP1
 /~skip-button:1 SKIP2
 /~skip-button:2 SKIP3
