@@ -1,0 +1,21 @@
+Cell 1
+Button 1
+Helo There
+
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+What is up now?
+
+/asl;dfjam;l
+/~sound:aliens.wav
+This suchs i dont want to get hurt
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
