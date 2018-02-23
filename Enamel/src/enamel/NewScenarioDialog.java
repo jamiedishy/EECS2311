@@ -42,8 +42,11 @@ public class NewScenarioDialog {
 		ComboBox cellInput = new ComboBox();
 		ComboBox btnInput = new ComboBox();
 		HBox filenameInputLayout = new HBox(5);
-		filenameInputLayout.getChildren().addAll(fileText, extLabel);
 		HBox buttonsLayout = new HBox(40);
+		
+		fileText.setPromptText("Type filename here");
+		fileText.setAlignment(Pos.CENTER_LEFT);
+		filenameInputLayout.getChildren().addAll(fileText, extLabel);
 		buttonsLayout.setAlignment(Pos.CENTER);
 		buttonsLayout.getChildren().addAll(createButton, cancelButton);
 		
@@ -61,13 +64,15 @@ public class NewScenarioDialog {
 		GridPane.setConstraints(buttonsLayout, 0, 3, 2, 1);
 
 		layout.getChildren().addAll(
-				cellLabel, cellInput,
-				btnLabel, btnInput,
-				fileLabel, filenameInputLayout,
-				buttonsLayout
-				);
+			cellLabel, cellInput,
+			btnLabel, btnInput,
+			fileLabel, filenameInputLayout,
+			buttonsLayout
+		);
 		
 		fileText.setText("Please insert file Name");
+		createButton.disableProperty().bind(fileText.textProperty().isEmpty());
+		
 		createButton.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent ae) {
 				header = new String("");
@@ -78,7 +83,12 @@ public class NewScenarioDialog {
 			}
 		});
 		
-		cancelButton.setOnAction(e -> window.close());
+		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				header = null;
+				window.close();
+			}
+		});
 		
 		Scene newDialog = new Scene(layout);
 		window.setScene(newDialog);
