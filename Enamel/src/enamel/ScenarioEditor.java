@@ -292,94 +292,116 @@ public class ScenarioEditor {
     }
     
     private void createBraille() {
-    	int LIMIT = 1;
+    	
+        String cssLayout = "-fx-border-color: black;\n" +
+						   "-fx-border-width: 2;\n";
+
 		GridPane braillePage = new GridPane();
 		braillePage.setPadding(new Insets(10, 10, 10, 10));
         braillePage.setVgap(10);
         braillePage.setHgap(10);
         braillePage.setAlignment(Pos.CENTER);
-        //braillePage.setGridLinesVisible(true);
+
         Button add = new Button("Add");
         Button reset = new Button("Reset");
         Button back = new Button("Back");
+        
+        BrailleCellGUI[] bcGUI = new BrailleCellGUI[CELL_COUNT.get()];
+        GridPane[] bcLayout = new GridPane[CELL_COUNT.get()];
                 
-        GridPane bcLayout = new GridPane();
-        bcLayout.setAlignment(Pos.CENTER);
-		bcLayout.setPadding(new Insets(6, 0, 6, 6));
-        bcLayout.setHgap(3);
-        bcLayout.setVgap(6);
-        Label cellTag = new Label("1");
-        cellTag.setAlignment(Pos.CENTER);
-        TextField charInput = new TextField();
-        charInput.setPromptText("Enter character here");
-        charInput.setAlignment(Pos.CENTER);
-        RadioButton[] brailleRB = new RadioButton[8];
-        for (int i = 0; i < 8; i++) {
-        	brailleRB[i] = new RadioButton();
-        	bcLayout.getChildren().addAll(brailleRB[i]);
+        int i;
+        for (i = 0; i < CELL_COUNT.get(); i++) {
+ 
+        	bcGUI[i] = new BrailleCellGUI(storyList, i);
+        	bcLayout[i] = new GridPane();
+            bcLayout[i].setAlignment(Pos.CENTER);
+    		bcLayout[i].setPadding(new Insets(6, 0, 6, 6));
+            bcLayout[i].setHgap(3);
+            bcLayout[i].setVgap(6);
+    		bcLayout[i].setStyle(cssLayout);        	
+        	
+            Label cellTag = new Label(Integer.toString(i + 1));
+            Label fillerGap = new Label();
+            Label filler1   = new Label();
+            Label filler2   = new Label();
+            cellTag.setAlignment(Pos.CENTER);
+            fillerGap.setMinWidth(30);
+            filler1.setMinWidth(50);
+            filler2.setMinWidth(50);
+            
+            for (int j = 0; j < 8; j++) {
+            	bcGUI[i].setPin(j, new RadioButton());
+            	bcLayout[i].getChildren().addAll(bcGUI[i].getPin(j));
+            }
+            
+            GridPane.setHalignment(cellTag, HPos.CENTER);
+            GridPane.setHalignment(bcLayout[i], HPos.CENTER);
+            GridPane.setHalignment(bcGUI[i].getCharInput(), HPos.CENTER);
+            GridPane.setHalignment(bcGUI[i].getCbClear(), HPos.CENTER);
+            
+            GridPane.setConstraints(cellTag, (4 * i) + 1, 0);
+            GridPane.setConstraints(bcLayout[i], (4 * i) + 1, 1);
+            GridPane.setConstraints(bcGUI[i].getCharInput(), (4 * i), 2, 3, 1);
+            GridPane.setConstraints(bcGUI[i].getCbClear(), (4 * i), 3, 3, 1);
+            GridPane.setConstraints(filler1, (4 * i), 0);
+            GridPane.setConstraints(filler2, (4 * i) + 2, 0);
+            
+            GridPane.setConstraints(bcGUI[i].getPin(0), 0, 0);
+            GridPane.setConstraints(bcGUI[i].getPin(1), 0, 1);
+            GridPane.setConstraints(bcGUI[i].getPin(2), 0, 2);
+            GridPane.setConstraints(bcGUI[i].getPin(3), 1, 0);
+            GridPane.setConstraints(bcGUI[i].getPin(4), 1, 1);
+            GridPane.setConstraints(bcGUI[i].getPin(5), 1, 2);
+            GridPane.setConstraints(bcGUI[i].getPin(6), 0, 3);
+            GridPane.setConstraints(bcGUI[i].getPin(7), 1, 3);
+            
+            braillePage.getChildren().addAll(
+            		cellTag, bcLayout[i], bcGUI[i].getCharInput(), 
+            		bcGUI[i].getCbClear(), filler1, filler2
+            	);
+            
+            if (i + 1 < CELL_COUNT.get()) {
+                GridPane.setConstraints(fillerGap, (4 * i) + 3, 0);
+                braillePage.getChildren().addAll(fillerGap);
+            }
         }
 
-        GridPane.setHalignment(cellTag, HPos.CENTER);
-        GridPane.setHalignment(bcLayout, HPos.CENTER);
-        GridPane.setHalignment(charInput, HPos.CENTER);
-        GridPane.setHalignment(add, HPos.CENTER);
-        GridPane.setHalignment(reset, HPos.CENTER);
-        GridPane.setHalignment(back, HPos.CENTER);        
+/*        CheckBox cbClear = new CheckBox("Clear Braille cell");
+        GridPane.setHalignment(cbClear, HPos.CENTER);
+        GridPane.setConstraints(cbClear, 0, 3, (4 * i) - 1, 1);
+     */   
+        HBox buttonsLayout = new HBox(10);
+        buttonsLayout.setPadding(new Insets(5, 5, 5, 5));
+        buttonsLayout.setAlignment(Pos.CENTER);
+        GridPane.setHalignment(buttonsLayout, HPos.CENTER);
+        GridPane.setConstraints(buttonsLayout, 0, 4, (4 * i) - 1, 1);
+        buttonsLayout.getChildren().addAll(add, reset, back);
         
-        GridPane.setConstraints(cellTag, 1, 0);
-        GridPane.setConstraints(bcLayout, 1, 1);
-        GridPane.setConstraints(charInput, 0, 2, 3, 1);
-        GridPane.setConstraints(add, 0, 3);
-        GridPane.setConstraints(reset, 1, 3);        
-        GridPane.setConstraints(back, 2, 3);       
-        
-        GridPane.setConstraints(brailleRB[0], 0, 0);
-        GridPane.setConstraints(brailleRB[1], 0, 1);
-        GridPane.setConstraints(brailleRB[2], 0, 2);
-        GridPane.setConstraints(brailleRB[3], 1, 0);
-        GridPane.setConstraints(brailleRB[4], 1, 1);
-        GridPane.setConstraints(brailleRB[5], 1, 2);
-        GridPane.setConstraints(brailleRB[6], 0, 3);
-        GridPane.setConstraints(brailleRB[7], 1, 3);
-
-        String cssLayout =	"-fx-border-color: black;\n" +
-							"-fx-border-width: 2;\n";
-
-		bcLayout.setStyle(cssLayout);
+        braillePage.getChildren().addAll(buttonsLayout);
+       
+		add.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				for (int i = 0; i < CELL_COUNT.get(); i++) {
+					bcGUI[i].write();
+				}
+				reset.fire();
+			}
+		});
 		
-        braillePage.getChildren().addAll(cellTag, bcLayout, charInput, add, reset, back);
-        
-        // https://stackoverflow.com/questions/22714268/how-to-limit-the-amount-of-characters-a-javafx-textfield
-        charInput.lengthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
-                if (newValue.intValue() > oldValue.intValue()) {
-                    // Check if the new character is greater than LIMIT
-                    if (charInput.getText().length() >= LIMIT) {
-                        charInput.setText(charInput.getText().substring(0, LIMIT));
-                    }
-                }
-            }
-        });
-        
-        // http://fxexperience.com/2012/02/restricting-input-on-a-textfield/
-        charInput.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {             
-                if (!charInput.getText().toLowerCase().matches("[a-z]"))
-                	charInput.setText("");
-            }
-        });
-        
+		reset.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent ae) {
+				for (int i = 0; i < CELL_COUNT.get(); i++) {
+					bcGUI[i].clear();
+					bcGUI[i].getCbClear().setSelected(false);
+					bcGUI[i].getCharInput().setDisable(false);
+				}
+			}
+		});
+		
+        back.setOnAction(e -> displayStartPage());
+           
         mainLayout.setCenter(braillePage);
-        
-/*        int i;
-        for (i = 0; i < CELL_COUNT.get(); i++) {
-        	
-        	
-        }*/
+
 	}
 
 	private void createStory() {
