@@ -263,12 +263,13 @@ public class ScenarioEditor {
     	if (headers == null)
     		return;
     	
+    	displayWelcomePage();
+    	
     	String[] headerInfo = headers.split("/");
     	FILENAME.set(headerInfo[0]);
     	CELL_COUNT.set(Integer.parseInt(headerInfo[1]));
     	BUTTON_COUNT.set(Integer.parseInt(headerInfo[2]));
     	
-    	displayWelcomePage();
     	displayStartPage();
     }
     
