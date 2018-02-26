@@ -68,7 +68,6 @@ public class NewScenarioDialog {
 			buttonsLayout
 		);
 		
-		fileText.setText("Please insert file Name");
 		createButton.disableProperty().bind(fileText.textProperty().isEmpty());
 		
 		createButton.setOnAction(new EventHandler<ActionEvent>() {

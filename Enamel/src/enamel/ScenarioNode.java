@@ -42,12 +42,12 @@ public class ScenarioNode {
 	public void write() {	
 		
 		if (isStory) {
-			if (isRepeat)
-				module.getItems().addAll("/~repeat");
-	
 			if (audio != null)
 				module.getItems().addAll("/~sound:" + audio);
 			
+			if (isRepeat)
+				module.getItems().addAll("/~repeat");
+		
 			if (text != null)
 				module.getItems().addAll(text);
 					
@@ -55,7 +55,7 @@ public class ScenarioNode {
 				module.getItems().addAll("Press 1 to continue.");
 				if (isRepeat) {
 					module.getItems().addAll("Press 2 to repeat.");				
-					module.getItems().addAll("/~end-repeat");
+					module.getItems().addAll("/~endrepeat");
 					module.getItems().addAll("/~repeat-button:1");
 				}						
 				module.getItems().addAll("/~skip-button:0 " + JUMP_TAG);

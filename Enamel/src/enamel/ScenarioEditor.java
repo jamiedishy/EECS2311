@@ -475,6 +475,8 @@ public class ScenarioEditor {
 			add, reset, back
 		);
 		
+		add.setAccessibleText("Add current input to scenario file");
+		
         mainLayout.setCenter(storyPage);
     }
     
