@@ -268,6 +268,7 @@ public class ScenarioEditor {
     	CELL_COUNT.set(Integer.parseInt(headerInfo[1]));
     	BUTTON_COUNT.set(Integer.parseInt(headerInfo[2]));
     	
+    	displayWelcomePage();
     	displayStartPage();
     }
     
