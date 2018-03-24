@@ -1,4 +1,4 @@
- package enamel;
+package enamel;
 
 import java.util.HashMap;
 import java.util.*;
@@ -26,13 +26,13 @@ import java.util.*;
  * method of class <code> Simulator</code> to obtain references to individual
  * <code> BrailleCell</code> objects.
  * 
- * @author Team 14: Paul Sison, Samuel On, Jonas Laya, Jamie Dishy
+ * @author Team 4: Yassin Mohamed, Qassim Allauddin, Derek Li, Artem Solovey.
  * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
  *
  */
 public class BrailleCell {
 
-	private boolean[] listOfPins = new boolean[8];
+	boolean[] listOfPins = new boolean[8];
 	private static HashMap<Character, String> alphabet = new HashMap<Character, String>();
 
 	/**
@@ -51,10 +51,9 @@ public class BrailleCell {
 	 * as String, with 1 representing a raised pin and 0 representing a lowered pin. 
 	 */
 	private void initializeAlphabet() {
-
 		alphabet.put('a', "10000000");
 		alphabet.put('b', "11000000");
-		alphabet.put('c', "10010000");
+		alphabet.put('c', "10100000");
 		alphabet.put('d', "10011000");
 		alphabet.put('e', "10001000");
 		alphabet.put('f', "11010000");
@@ -128,7 +127,7 @@ public class BrailleCell {
 		for (int i = 0; i <= 7; i++) {
 			if (pins.charAt(i) != '0' && pins.charAt(i) != '1') {
 				throw new IllegalArgumentException(
-						"Invalid string passed, non-binary character detected.");
+						"Invalid string passed, non-binary character detected at index:" + i + ".");
 			}
 		}
 		this.clear();
@@ -151,7 +150,7 @@ public class BrailleCell {
 		if (pin < 0 || pin > 7) {
 			throw new IllegalArgumentException("Invalid index");
 		}
-		listOfPins[pin] = true;
+		listOfPins[pin - 1] = true;
 	}
 	
 	/**
