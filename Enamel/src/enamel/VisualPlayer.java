@@ -40,10 +40,7 @@ import javax.swing.SwingUtilities;
  * @author Team 4: Yassin Mohamed, Qassim Allauddin, Derek Li, Artem Solovey.
  * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
  */
-/**
- * @author Team 14: Paul Sison, Samuel On, Jonas Laya, Jamie Dishy
- *
- */
+
 public class VisualPlayer extends Player {
 
 	
