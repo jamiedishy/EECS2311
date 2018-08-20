@@ -272,7 +272,7 @@ public class ScenarioEditorPresenter {
     }
     
     private void newScenario() {
-/*    	NewScenarioView newView = new NewScenarioView();
+    	NewScenarioView newView = new NewScenarioView();
     	NewScenarioPresenter newPresenter = new NewScenarioPresenter(newView);
     	newView.display();
 
@@ -287,7 +287,7 @@ public class ScenarioEditorPresenter {
     	updateView();
     	
     	displayPage(Page.START);  	
-    	log.add(Actions.NEW_SCENARIO);*/
+    	log.add(Actions.NEW_SCENARIO);
     }
     
 	private void openScenario() {
@@ -353,7 +353,6 @@ public class ScenarioEditorPresenter {
 	 */
     private File ofc(String title, String type, String ext) {
     	FileChooser fc = new FileChooser();
-    	//File defaultDir = new File(System.getProperty("user.dir") + File.separator + "FactoryScenarios");
     	
     	fc.setTitle(title);
     	fc.setInitialDirectory(defaultDir);
@@ -368,11 +367,6 @@ public class ScenarioEditorPresenter {
      */
     private void serializeScenario(ScenarioFile sf) throws IOException {
     	String ext = ".bin";
-/*    	File binDir = new File(System.getProperty("user.dir") + File.separator + 
-    					"FactoryScenarios" + File.separator + "bin");
-    	
-    	if (!binDir.exists()) 
-    		binDir.mkdirs();*/
     	
     	File binFile = new File(binDir.getAbsolutePath() + File.separator + 
     					FilenameUtils.removeExtension(sf.getFilename()) + ext);
@@ -388,11 +382,6 @@ public class ScenarioEditorPresenter {
      */
     private ScenarioFile deserializeScenario(String filename) throws Exception {
     	String ext = ".bin";
-/*    	File binDir = new File(System.getProperty("user.dir") + File.separator + 
-    					"FactoryScenarios" + File.separator + "bin");
-    	
-    	if (!binDir.exists()) 
-    		binDir.mkdirs();*/
     	
     	File binFile = new File(binDir.getAbsolutePath() + File.separator + 
     					FilenameUtils.removeExtension(filename) + ext);
@@ -421,10 +410,6 @@ public class ScenarioEditorPresenter {
     private void save(String filename) {
     	File chosenFile;    	
     	String ext = ".txt";
-/*    	File defaultDir = new File(System.getProperty("user.dir") + File.separator + "FactoryScenarios");
-    	
-    	if (!defaultDir.exists())
-    		defaultDir.mkdir();*/
     	
     	if (filename == null || filename.equals("")) {
 	    	FileChooser fc = new FileChooser();
@@ -481,8 +466,6 @@ public class ScenarioEditorPresenter {
 	private void uploadAudio() {
 		File src = ofc("Upload an audio file...", "Audio file", "*.wav");
 		if (src != null) {
-/*			File dir = new File(System.getProperty("user.dir") + File.separator + 
-						"FactoryScenarios" + File.separator + "AudioFiles");*/
 			File target = new File(audioDir.getAbsolutePath() + File.separator + src.getName());
 			
 			try {
