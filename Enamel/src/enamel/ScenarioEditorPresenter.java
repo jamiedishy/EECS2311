@@ -498,14 +498,14 @@ public class ScenarioEditorPresenter {
 	}
 
 	private void recordAudio() {
-/*		RecordAudioView recView = new RecordAudioView();
+		RecordAudioView recView = new RecordAudioView();
 		RecordAudioPresenter recPresenter = new RecordAudioPresenter(recView, this);
-		recView.display();*/
+		recView.display();
 	}
     
 	private void viewStats() {
-/*		LogStatsView logView = new LogStatsView(log);
-		logView.display();*/
+		LogStatsView logView = new LogStatsView(log);
+		logView.display();
 	}
 	
 }
