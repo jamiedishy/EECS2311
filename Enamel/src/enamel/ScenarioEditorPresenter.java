@@ -233,7 +233,7 @@ public class ScenarioEditorPresenter {
     			StartPagePresenter startPresenter = new StartPagePresenter(startPage, this);
     			view.mainLayout.setCenter(startPage);
     			break;
-/*    		case STORY:
+    		case STORY:
     			StoryPageView storyPage = new StoryPageView(BUTTON_COUNT.get(), false);
     			StoryPagePresenter storyPresenter = new StoryPagePresenter(storyPage, this);
     			view.mainLayout.setCenter(storyPage);
@@ -247,13 +247,13 @@ public class ScenarioEditorPresenter {
     			BraillePageView braillePage = new BraillePageView(CELL_COUNT.get(), false);
     			BraillePagePresenter braillePresenter = new BraillePagePresenter(braillePage, this);
     			view.mainLayout.setCenter(braillePage);
-    			break;*/
+    			break;
     	} 	
     }
     
     public void displayPage(Page page, ScenarioModule scene, TreeItem<String> branch) {
     	switch (page) {
-/*			case STORY:
+			case STORY:
 				StoryPageView storyPage = new StoryPageView(BUTTON_COUNT.get(), true);
 				StoryPagePresenter storyPresenter = new StoryPagePresenter(storyPage, this, scene, branch);
 				view.mainLayout.setCenter(storyPage);
@@ -267,7 +267,7 @@ public class ScenarioEditorPresenter {
     			BraillePageView braillePage = new BraillePageView(CELL_COUNT.get(), true);
     			BraillePagePresenter braillePresenter = new BraillePagePresenter(braillePage, this, scene, branch);
     			view.mainLayout.setCenter(braillePage);
-				break;*/
+				break;
 		}    	
     }
     
