@@ -1,6 +1,7 @@
 package enamel;
 
 import java.util.HashMap;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -30,8 +31,12 @@ import java.util.*;
  * @author ENAMEL team: Sunjik Lee, Li Yin, Vassilios Tzerpos.
  *
  */
-public class BrailleCell {
+public class BrailleCell implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	boolean[] listOfPins = new boolean[8];
 	private static HashMap<Character, String> alphabet = new HashMap<Character, String>();
 

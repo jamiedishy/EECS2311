@@ -1,0 +1,74 @@
+Cell 1
+Button 4
+Orientation questions. Questions with two pins
+/~disp-cell-clear:0
+/~disp-cell-pins:0 10100000
+Here's the first question: What pins are up right now? Are they the pins 1 and 3, or are they pins 4 and 6? Press the button 1 for pins 1 and 3, or press button 2 for pins 4 and 6.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~user-input
+/~SKIP1
+/~sound:correct.wav
+That's correct! The pins being displayed are 1 and 3, which are the top and bottom pins on the left side of the cell.
+/~skip:JUMP
+/~SKIP2
+/~sound:wrong.wav
+I'm sorry! That's incorrect. The pins being displayed are 1 and 3, which are the top and bottom pins on the left side of the cell, and not 4 and 6, which are on the right side of the cell.
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-clear:0
+/~disp-cell-pins:0 01001000
+Here's the second question: What pins are up right now? Are they the pins 2 and 5, or are they the pins 1 and 4? Press button 1 for pins 2 and 5, or press button 2 for pins 1 and 4.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~user-input
+/~SKIP1
+/~sound:correct.wav
+That's correct! The pins being displayed are 2 and 5, which are the two middle pins.
+/~skip:JUMP
+/~SKIP2
+/~sound:wrong.wav
+I'm sorry! That's incorrect. The pins being displayed are 2 and 5, which are the two middle pins, and not 1 and 4, which are the two pins on the top of the cell.
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-clear:0
+/~disp-cell-pins:0 00100100
+Here's the third question: What pins are up right now? Are they the pins 1 and 4, or are they the pins 3 and 6? Press button 1 for pins 1 and 4, or press button 2 for pins 3 and 6.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~user-input
+/~SKIP1
+/~sound:wrong.wav
+I'm sorry! That's incorrect. The pins being displayed are 3 and 6, which are the two pins on the bottom side, and not 1 and 4, which are the two pins on the top of the cell.
+/~skip:JUMP
+/~SKIP2
+/~sound:correct.wav
+That's correct! The pins being displayed are 3 and 6, which are the two bottom pins.
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-clear:0
+/~disp-cell-pins:0 00010100
+Here's the fourth question: What pins are up right now? Are they the pins 4 and 6, or are they the pins 1 and 3? Press button 1 for pins 4 and 6, or press button 2 for pins 1 and 3.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~user-input
+/~SKIP1
+/~sound:correct.wav
+That's correct! The pins being displayed are 4 and 6, which are the top and bottom pins on the right side.
+/~skip:JUMP
+/~SKIP2
+/~sound:wrong.wav
+I'm sorry! That's incorrect. The pins being displayed are 4 and 6, which are the top and bottom pins on the right side, which are the top and bottom pins on the left side.
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-clear:0
+That's all for now! Thank you for playing two pin questions!
+Have a nice day!

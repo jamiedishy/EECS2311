@@ -1,0 +1,62 @@
+.root {
+	-fx-background-color: rgb(230, 230, 230);
+}
+
+.button {
+	-fx-pref-width: 80;
+	-fx-pref-heigth: 40;
+	-fx-background-color: royalblue;
+}
+
+.button .text {
+	-fx-fill: white;
+	-fx-font-weight: bold;
+}
+
+.combo-box-base {
+	-fx-background-color: white;
+	-fx-border-color: rgb(200.0, 200.0, 200.0);
+	-fx-border-width: 1 1 1 1;
+	-fx-background-radius: 4;
+	-fx-border-radius: 4;
+}
+
+.radio-button>.radio, .radio-button>.radio.unfocused, .radio-button:disabled>.radio,
+	.radio-button:selected>.radio {
+	-fx-border-color: rgb(200.0, 200.0, 200.0);
+	-fx-border-width: 1;
+	-fx-background-color: white;
+	-fx-background-radius: 100;
+	-fx-border-radius: 100.0;
+}
+
+.check-box>.box, .check-box>.box.unfocused, .check-box:disabled>.box {
+	-fx-border-radius: 4.0;
+	-fx-border-color: rgb(200.0, 200.0, 200.0);
+	-fx-border-width: 1;
+	-fx-background-radius: 4;
+	-fx-background-color: white;
+}
+
+#dialog {
+	-fx-background-color: rgb(245, 246, 247);
+}
+
+#welcome {
+	-fx-font-family: 'Calibri';
+	-fx-font-size: 50px;
+	-fx-text-fill: rgb(100, 100, 100);
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
+
+#toolbar {
+	-fx-background-color: rgb(245, 246, 247);
+	-fx-border-color: rgb(200.0, 200.0, 200.0);
+	-fx-border-width: 1;
+	-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0, 1.5);
+}
+
+#boldtitle {
+	-fx-font-weight: bold;
+}

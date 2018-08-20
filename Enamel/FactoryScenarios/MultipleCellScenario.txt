@@ -1,0 +1,18 @@
+Cell 4
+Button 4
+/~disp-cell-pins:0 10000000
+/~disp-cell-pins:1 11000000
+/~disp-cell-pins:2 11100000
+/~disp-cell-pins:3 00011100
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-clear:0
+/~disp-cell-clear:1
+/~disp-cell-clear:2
+/~disp-cell-clear:3
+That's the end of this demo.
+Thank you for using!

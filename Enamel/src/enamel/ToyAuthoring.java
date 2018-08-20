@@ -11,7 +11,8 @@ public class ToyAuthoring extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	ScenarioEditor main = new ScenarioEditor();
-    	main.display();
+    	ScenarioEditorView mainView = new ScenarioEditorView();
+    	ScenarioEditorPresenter mainPresenter = new ScenarioEditorPresenter(mainView);
+    	mainView.display();
     }
 }

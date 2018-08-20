@@ -1,0 +1,100 @@
+Cell 4
+Button 4
+EECS 2311
+Software Development Project
+/~sound:correct.wav
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~repeat
+Press 1 to continue.
+Press 2 to repeat.
+/~endrepeat
+/~repeat-button:1
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~sound:correct.wav
+EECS 2311
+Software Development Project
+EECS 2311
+Software Development Project
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~repeat
+EECS 2311
+Software Development Project
+Press 1 to continue.
+Press 2 to repeat.
+/~endrepeat
+/~repeat-button:1
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~sound:correct.wav
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~sound:correct.wav
+/~repeat
+Press 1 to continue.
+Press 2 to repeat.
+/~endrepeat
+/~repeat-button:1
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~sound:correct.wav
+EECS 2311
+Software Development Project
+Press 1 to continue.
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~sound:correct.wav
+/~repeat
+EECS 2311
+Software Development Project
+Press 1 to continue.
+Press 2 to repeat.
+/~endrepeat
+/~repeat-button:1
+/~skip-button:0 JUMP
+/~user-input
+/~JUMP
+/~pause:1
+/~reset-buttons
+What is the meaning of life? Press button 1 for Computer Science, or button 2 for Money.
+/~skip-button:0 SKIP1
+/~skip-button:1 SKIP2
+/~user-input
+/~SKIP1
+/~sound:correct.wav
+That's correct! 42 for life.
+/~skip:JUMP
+/~SKIP2
+/~sound:wrong.wav
+Wrong! Money is the root of all evil.
+/~skip:JUMP
+/~JUMP
+/~pause:1
+/~reset-buttons
+/~disp-cell-char:0 a
