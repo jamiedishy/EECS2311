@@ -24,9 +24,6 @@ public class WelcomePageView extends VBox {
 
 		text.setText("Welcome to\nSCENARIO EDITOR");
 		text.setId("welcome");
-		
-/*		String cssStyle = "-fx-background-color: lightskyblue;";
-		this.setStyle(cssStyle);*/
 	}
 	
 	private void addAccessibility() {

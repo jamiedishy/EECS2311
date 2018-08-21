@@ -5,10 +5,8 @@ import java.util.List;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.AccessibleRole;
 import javafx.scene.control.TreeItem;
 
 public class ScenePanelPresenter {
