@@ -6,4 +6,4 @@ Visit the [Documentation](https://github.com/jamiedishy/EECS2311/tree/master/Doc
 
 **OR**
 
-Try out the App by the downloading the latest version from the [Releases](https://github.com/jamiedishy/EECS2311/releases) page.
+Try out the App by downloading the latest version from the [Releases](https://github.com/jamiedishy/EECS2311/releases) page.
