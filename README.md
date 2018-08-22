@@ -1,4 +1,4 @@
-###### EECS 2311 Winter 2018
+## EECS 2311 Winter 2018
 
 This repository contains resources for the *Braille Authoring App* developed by **Team 14**.
 
